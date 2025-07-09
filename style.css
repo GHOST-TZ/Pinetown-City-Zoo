@@ -1,0 +1,336 @@
+/* ============= BASE STYLES ============= */
+:root {
+  --primary-color: #2e7d32;
+  --secondary-color: #66bb6a; /* A slightly lighter green */
+  --accent-color: #aed581; /* A pastel green for highlights */
+  --dark-color: #388e3c; /* A darker shade for contrast */
+  --light-color: #e8f5e9; /* A softer light green */
+  --text-color: #424242; /* Darker text for readability */
+  --text-light: #fff;
+  --shadow: 0 4px 8px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+  --border-radius: 12px; /* More rounded corners */
+  --transition-speed: 0.3s;
+  --font-family: 'Roboto', sans-serif; /* Modern font */
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: var(--font-family);
+  color: var(--text-color);
+  line-height: 1.7; /* Improved line height for readability */
+  background-color: var(--light-color);
+  transition: background-color var(--transition-speed) ease;
+}
+
+/* ============= HEADER ============= */
+#header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 80px;
+  background-color: var(--dark-color);
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  justify-content: space-between; /* Space out logo and potentially other header elements */
+  padding: 0 20px;
+}
+
+#header img {
+  height: 60px;
+  transition: transform var(--transition-speed) ease;
+}
+
+#header img:hover {
+  transform: scale(1.1);
+}
+
+/* ============= NAVIGATION TABS ============= */
+#tabs-top {
+  position: fixed;
+  top: 80px;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 60px; /* Slightly larger tabs */
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-around; /* Distribute tabs evenly */
+  box-shadow: var(--shadow);
+}
+
+#tabs-top a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500; /* Slightly lighter font weight */
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+  position: relative;
+  overflow: hidden; /* Hide the ::after pseudo-element initially */
+}
+
+#tabs-top a:hover {
+  background-color: var(--secondary-color);
+  color: var(--text-light);
+}
+
+#tabs-top a.active {
+  background-color: var(--dark-color);
+  font-weight: 600;
+}
+
+#tabs-top a::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 4px;
+  background-color: var(--accent-color);
+  transform: scaleX(0); /* Start with no width */
+  transform-origin: left;
+  transition: transform var(--transition-speed) ease-in-out; /* Animate the width */
+}
+
+#tabs-top a:hover::after,
+#tabs-top a.active::after {
+  transform: scaleX(1); /* Expand to full width on hover and for active tab */
+}
+
+/* ============= MAIN CONTENT ============= */
+#main {
+  margin-top: 140px; /* Adjust margin to accommodate larger tabs */
+  padding: 20px;
+  min-height: calc(100vh - 220px); /* Adjust min-height */
+}
+
+#main-home {
+  margin-top: 140px;
+  text-align: center; /* Center content on the home page */
+}
+
+#main-home img {
+  width: 100%;
+  max-width: 800px; /* Limit the maximum width of the map */
+  height: auto;
+  display: block;
+  margin: 20px auto; /* Center the image */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+#content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px; /* Add padding around the content */
+}
+
+/* ============= INFO BOXES ============= */
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); /* Slightly wider boxes */
+  gap: 25px; /* Increased gap for better spacing */
+  padding: 20px;
+}
+
+a.info-box {
+  text-decoration: none;
+  background: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  transition: transform var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+a.info-box:hover {
+  transform: translateY(-7px); /* Slightly more pronounced lift */
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2); /* Stronger shadow on hover */
+}
+
+.info-box-content {
+  padding: 20px; /* Increased padding */
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.info-box img:first-child {
+  width: 100%;
+  height: 220px; /* Slightly taller images */
+  object-fit: cover;
+  border-bottom: 1px solid #eee; /* Add a subtle border */
+}
+
+.info-box img.right {
+  width: 28px; /* Slightly larger arrow */
+  height: 28px;
+  align-self: flex-end;
+  margin-top: 15px;
+  transition: transform var(--transition-speed) ease;
+}
+
+.info-box:hover img.right {
+  transform: translateX(5px); /* Subtle arrow animation on hover */
+}
+
+.info-box h3 {
+  margin: 12px 0;
+  color: var(--primary-color);
+  font-size: 1.3rem; /* Slightly larger heading */
+}
+
+.info-box p {
+  margin: 0 0 15px;
+  color: var(--text-color);
+  flex-grow: 1;
+}
+
+/* ============= DETAIL PAGES ============= */
+#info-box-full {
+  background: #fff;
+  border-radius: var(--border-radius);
+  overflow: hidden;
+  box-shadow: var(--shadow);
+  max-width: 1000px;
+  margin: 20px auto; /* Add some margin */
+  padding: 0;
+}
+
+#info-box-full img {
+  width: 100%;
+  height: 450px; /* Taller detail image */
+  object-fit: cover;
+}
+
+#info-box-full h3 {
+  text-align: center;
+  color: var(--primary-color);
+  font-size: 2.2rem; /* Larger heading */
+  margin: 25px 0;
+  padding: 0 20px;
+}
+
+#info-box-full p {
+  padding: 0 20px;
+  margin-bottom: 20px;
+  color: var(--text-color);
+}
+
+#info-box-full ul {
+  padding: 0 20px 20px 40px;
+  color: var(--text-color);
+}
+
+#info-box-full strong {
+  color: var(--dark-color);
+}
+
+/* ============= BOTTOM NAVIGATION ============= */
+#tabs-bottom {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  z-index: 1000;
+  width: 100%;
+  height: 65px; /* Slightly taller bottom tabs */
+  background-color: var(--primary-color);
+  display: flex;
+  justify-content: space-around;
+  box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
+}
+
+#tabs-bottom a {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 1;
+  color: var(--text-light);
+  text-decoration: none;
+  font-weight: 500;
+  transition: background-color var(--transition-speed) ease, transform var(--transition-speed) ease;
+}
+
+#tabs-bottom a:hover {
+  background-color: var(--dark-color);
+  transform: translateY(-3px); /* Lift on hover */
+}
+
+/* ============= SEARCH BAR ============= */
+.search-container {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  background-color: var(--light-color);
+  margin-bottom: 25px;
+}
+
+.search-container input {
+  padding: 12px 18px; /* Slightly larger input */
+  border: 2px solid var(--primary-color);
+  border-radius: 30px; /* More rounded input */
+  width: 100%;
+  max-width: 600px; /* Wider input */
+  font-size: 1.1rem;
+  outline: none;
+  transition: border-color var(--transition-speed) ease;
+}
+
+.search-container input:focus {
+  border-color: var(--accent-color);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1); /* Add a subtle shadow on focus */
+}
+
+/* ============= ANIMAL FACTS ============= */
+.fact-box {
+  background-color: #fff; /* Use white for the fact box */
+  border-left: 5px solid var(--accent-color); /* Thicker accent border */
+  padding: 20px; /* Increased padding */
+  margin: 25px; /* Increased margin */
+  border-radius: var(--border-radius);
+  box-shadow: var(--shadow);
+}
+
+.fact-box h4 {
+  margin-top: 0;
+  color: var(--dark-color);
+  font-size: 1.4rem; /* Slightly larger heading */
+  margin-bottom: 10px;
+}
+
+.fact-box p {
+  color: var(--text-color);
+}
+
+/* ============= RESPONSIVE DESIGN ============= */
+@media (max-width: 768px) {
+  #tabs-top,
+  #tabs-bottom {
+    height: auto;
+    flex-wrap: wrap;
+  }
+
+  #tabs-top a,
+  #tabs-bottom a {
+    padding: 12px;
+    font-size: 1rem;
+  }
+
+  #info-box-full img {
+    height: 300px;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+}
